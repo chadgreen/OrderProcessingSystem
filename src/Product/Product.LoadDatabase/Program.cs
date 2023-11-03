@@ -9,7 +9,7 @@ PrintBanner();
 
 JsonSerializerOptions jsonSerializerOptions = BuildJsonSerializerOptions();
 string dataPath = GetDataPath();
-ConfigServices configServices = new("appConfigEndpoint", "Development");
+ConfigServices configServices = new("https://appcs-orderprocessingsystemwalkthrough.azconfig.io", "Development");
 
 using CosmosClient cosmosClient = new(configServices.CosmosUri, configServices.CosmosKey);
 Database database = ConnectToDatabaseAsync(configServices.ProductCosmosDatabaseId);
@@ -21,6 +21,9 @@ await LoadAvailabilitiesAsync();
 await LoadThemesAsync();
 
 await LoadMerchandiseAsync();
+
+Console.WriteLine("Database load complete");
+Console.ReadKey();
 
 static void PrintBanner()
 {
