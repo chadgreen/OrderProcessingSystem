@@ -43,11 +43,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipping.Services", "Shippi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Functions", "Product\Product.Functions\Product.Functions.csproj", "{210AD8DF-654E-4AF4-838B-030B3D9732BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purchase.Functions", "Purchase\Purchase.Functions\Purchase.Functions.csproj", "{ECE09A64-AA13-4FB4-8459-6FC83CF32E3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Purchase.Functions", "Purchase\Purchase.Functions\Purchase.Functions.csproj", "{ECE09A64-AA13-4FB4-8459-6FC83CF32E3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notice.Functions", "Notice\Notice.Functions\Notice.Functions.csproj", "{C46971D8-69FF-46A5-81AB-C2680BC3DAC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notice.Functions", "Notice\Notice.Functions\Notice.Functions.csproj", "{C46971D8-69FF-46A5-81AB-C2680BC3DAC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Functions", "Inventory\Inventory.Functions\Inventory.Functions.csproj", "{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Functions", "Inventory\Inventory.Functions\Inventory.Functions.csproj", "{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

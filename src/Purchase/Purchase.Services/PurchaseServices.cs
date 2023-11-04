@@ -98,5 +98,33 @@ public class PurchaseServices : ServicesBase
 		return response;
 	}
 
+	public async Task UpdatePurchaseItemStatusAsync(
+		string purchaseId,
+		string productId,
+		int purchaseStatusId)
+	{
+
+		using PurchaseContext purchaseContext = new(_configServices);
+		CustomerPurchase? purchase = await purchaseContext.CustomerPurchases
+			.Include(x => x.PurchaseLineItems)
+			.FirstOrDefaultAsync(x => x.CustomerPurchaseId == purchaseId);
+		if (purchase is not null)
+		{
+
+			PurchaseLineItem? purchaseLineItem = purchase.PurchaseLineItems.FirstOrDefault(x => x.ProductId == productId);
+			if (purchaseLineItem is not null)
+			{
+				purchaseLineItem.PurchaseStatusId = purchaseStatusId;
+				await purchaseContext.SaveChangesAsync();
+			}
+
+			if (purchase.PurchaseLineItems.FirstOrDefault(x => x.PurchaseStatusId != purchaseStatusId) is null && purchase.PurchaseStatusId != purchaseStatusId)
+			{
+				purchase.PurchaseStatusId = purchaseStatusId;
+				await purchaseContext.SaveChangesAsync();
+			}
+		}
+
+	}
 
 }
