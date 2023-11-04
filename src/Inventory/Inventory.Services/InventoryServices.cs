@@ -52,6 +52,21 @@ public class InventoryServices : ServicesBase
 
 	}
 
+	public async Task<InventoryUpdatedMessage?> GetInventoryStatusAsync(string productId)
+	{
+		using InventoryContext inventoryContext = new(_configServices);
+		return await GetInventoryStatusAsync(productId, inventoryContext);
+	}
+
+	public async Task InventoryUpdatedAsync(string productId)
+	{
+		InventoryUpdatedMessage? inventoryUpdatedMessage = await GetInventoryStatusAsync(productId);
+		if (inventoryUpdatedMessage is not null)
+			await SendMessageToEventHubAsync(
+				_configServices.InventoryEventHubsInventoryUpdatedConnectionString,
+				_configServices.InventoryEventHubsInventoryUpdatedEventHubName,
+				JsonSerializer.Serialize(inventoryUpdatedMessage));
+	}
 	private static async Task<InventoryUpdatedMessage?> GetInventoryStatusAsync(string productId, InventoryContext inventoryContext)
 	{
 		List<InventoryTransaction> inventoryTransactions = await inventoryContext.InventoryTransactions.Where(x => x.ProductId == productId).ToListAsync();
