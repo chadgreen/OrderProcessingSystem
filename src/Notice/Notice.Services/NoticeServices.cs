@@ -18,6 +18,14 @@ public class NoticeServices : ServicesBase
 		await SendEmailAsync(orderPlacedMessage.CustomerId, NoticeTypes.OrderConfirmation, subject, htmlContent, plainTextContent);
 	}
 
+	public async Task SendBackorderNoticeAsync(InventoryReservedMessage inventoryReservedMessage)
+	{
+		string subject = $"Backorder Notice - {inventoryReservedMessage.OrderId}";
+		string htmlContent = $"<html><body><p>Thank you for your order. Unfortunately, the {inventoryReservedMessage.ProductId} - {inventoryReservedMessage.ProductName} is on backorder and will be shipped as soon as it is back in stock.</p></body></html>";
+		string plainTextContent = $"Thank you for your order. Your order number is {inventoryReservedMessage.OrderId}. Your order is on backorder.";
+		await SendEmailAsync(inventoryReservedMessage.CustomerId, NoticeTypes.BackorderNotice, subject, htmlContent, plainTextContent);
+	}
+
 	private async Task SendEmailAsync(
 		int customerId,
 		int noticeTypeId,

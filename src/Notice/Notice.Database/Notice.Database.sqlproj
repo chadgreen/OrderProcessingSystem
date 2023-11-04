@@ -79,6 +79,6 @@
     <None Include="Purchase\Scripts\Populate\Populate_Customer.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Script.PostDeployment.sql" />
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
