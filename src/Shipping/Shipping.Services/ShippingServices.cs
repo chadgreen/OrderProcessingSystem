@@ -3,6 +3,7 @@ using BuildingBricks.EventMessages;
 using BuildingBricks.Shipping.Constants;
 using BuildingBricks.Shipping.Models;
 using BuildingBricks.Shipping.Requests;
+using System.Text.Json;
 
 namespace BuildingBricks.Shipping;
 
@@ -26,7 +27,9 @@ public class ShippingServices : ServicesBase
 		using ShippingContext shippingContext = new(_configServices);
 
 		// Retrieve the shipment to be updated
-		Shipment? shipment = await shippingContext.Shipments.FirstOrDefaultAsync(x => x.ShipmentId == shipmentId)
+		Shipment? shipment = await shippingContext.Shipments
+			.Include(x => x.CustomerPurchase)
+			.FirstOrDefaultAsync(x => x.ShipmentId == shipmentId)
 			?? throw new ArgumentNullException(nameof(shipmentId));
 
 		// Validate the specified shipment status
@@ -46,6 +49,9 @@ public class ShippingServices : ServicesBase
 		shipment.ShippingCarrierId = carrier?.ShippingCarrierId ?? null;
 		shipment.TrackingNumber = updateShipmentStatusRequest.TrackingNumber;
 		await shippingContext.SaveChangesAsync();
+
+		// Send event message if necessary
+		await SendEventMessageIfNecessaryAsync(shipment);
 
 	}
 
@@ -96,6 +102,20 @@ public class ShippingServices : ServicesBase
 		});
 		await shippingContext.SaveChangesAsync();
 		return customerPurchase.Shipments.First().ShipmentId;
+	}
+
+	private async Task SendEventMessageIfNecessaryAsync(Shipment shipment)
+	{
+		if (shipment.ShipmentStatusId == ShipmentStatuses.Shipped)
+		{
+			OrderShippedMessage orderShippedMessage = new()
+			{
+				OrderId = shipment.CustomerPurchaseId,
+				Carrier = shipment.ShippingCarrier.ShippingCarrierName,
+				TrackingNumber = shipment.TrackingNumber
+			};
+			await SendMessageToEventHubAsync(_configServices.ShippingOrderShippedEventHubConnectionString, JsonSerializer.Serialize(orderShippedMessage));
+		}
 	}
 
 }
