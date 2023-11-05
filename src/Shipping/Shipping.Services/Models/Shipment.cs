@@ -23,9 +23,15 @@ public partial class Shipment
 	/// </summary>
 	public string CustomerPurchaseId { get; set; }
 
+	public int? ShippingCarrierId { get; set; }
+
+	public string TrackingNumber { get; set; }
+
 	public virtual CustomerPurchase CustomerPurchase { get; set; }
 
 	public virtual ShipmentStatus ShipmentStatus { get; set; }
+
+	public virtual ShippingCarrier ShippingCarrier { get; set; }
 
 	public virtual ICollection<ShipmentStatusDetail> ShipmentStatusDetails { get; set; } = new List<ShipmentStatusDetail>();
 

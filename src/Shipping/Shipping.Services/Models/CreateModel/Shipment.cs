@@ -22,13 +22,18 @@ internal static partial class CreateModel
 				}));
 
 			entity.Property(e => e.ShipmentId).HasComment("Identifier for the shipment.");
+
 			entity.Property(e => e.CustomerPurchaseId)
 				.IsRequired()
 				.HasMaxLength(36)
 				.IsUnicode(false)
 				.IsFixedLength()
 				.HasComment("Identifier for the associated customer purchase.");
+
 			entity.Property(e => e.ShipmentStatusId).HasComment("Identifier for the associated shipment status.");
+
+			entity.Property(e => e.TrackingNumber)
+				.HasMaxLength(100);
 
 			entity.HasOne(d => d.CustomerPurchase).WithMany(p => p.Shipments)
 				.HasForeignKey(d => d.CustomerPurchaseId)
@@ -39,6 +44,12 @@ internal static partial class CreateModel
 				.HasForeignKey(d => d.ShipmentStatusId)
 				.OnDelete(DeleteBehavior.ClientSetNull)
 				.HasConstraintName("fkShipment_ShipmentStatus");
+
+			entity.HasOne(d => d.ShippingCarrier).WithMany(p => p.Shipments)
+				.HasForeignKey(d => d.ShippingCarrierId)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("fkShipment_ShippingCarrierId");
+
 		});
 	}
 

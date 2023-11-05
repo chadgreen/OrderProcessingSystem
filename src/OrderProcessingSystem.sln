@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notice.Functions", "Notice\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Functions", "Inventory\Inventory.Functions\Inventory.Functions.csproj", "{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping.Functions", "Shipping\Shipping.Functions\Shipping.Functions.csproj", "{86AC453D-ECEE-4794-B2C5-CC5BD8005B8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,10 @@ Global
 		{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86AC453D-ECEE-4794-B2C5-CC5BD8005B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86AC453D-ECEE-4794-B2C5-CC5BD8005B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86AC453D-ECEE-4794-B2C5-CC5BD8005B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86AC453D-ECEE-4794-B2C5-CC5BD8005B8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +161,7 @@ Global
 		{ECE09A64-AA13-4FB4-8459-6FC83CF32E3F} = {246EE16E-1BAA-46C2-A296-025A739123E8}
 		{C46971D8-69FF-46A5-81AB-C2680BC3DAC3} = {8A1411BF-6853-488B-8C9F-D8D997215FA8}
 		{3875FA7C-9D96-4D41-B133-68BC1ACEFD8F} = {2BC35084-5483-481B-8066-0FDA1859E8EB}
+		{86AC453D-ECEE-4794-B2C5-CC5BD8005B8C} = {4259B664-7A81-429B-BEEC-539309CCE212}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3DF7AF98-C615-4E00-851C-FBCD97F8BB48}

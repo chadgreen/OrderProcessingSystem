@@ -82,11 +82,13 @@
     <Build Include="Shipping\Tables\Shipment.sql" />
     <Build Include="Shipping\Tables\ShipmentStatus.sql" />
     <Build Include="Shipping\Tables\ShipmentStatusDetail.sql" />
+    <Build Include="Shipping\Tables\ShippingCarrier.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Product\Scripts\Populate\Populate_Product.sql" />
     <None Include="Purchase\Scripts\Populate\Populate_Customer.sql" />
     <None Include="Shipping\Scripts\Populate\Populate_ShipmentStatus.sql" />
+    <None Include="Shipping\Scripts\Populate\Populate_ShippingCarrier.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -11,6 +11,8 @@ public partial class OrderItem
 
 	public string ProductId { get; set; }
 
+	public int Quantity { get; set; }
+
 	public virtual CustomerPurchase CustomerOrder { get; set; }
 
 	public virtual Product Product { get; set; }

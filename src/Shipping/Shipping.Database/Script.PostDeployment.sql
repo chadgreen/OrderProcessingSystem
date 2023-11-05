@@ -6,3 +6,4 @@
 
 -- Shipping
 :r .\Shipping\Scripts\Populate\Populate_ShipmentStatus.sql
+:r .\Shipping\Scripts\Populate\Populate_ShippingCarrier.sql

@@ -27,6 +27,8 @@ public partial class ShippingContext : DbContext
 
 	public virtual DbSet<ShipmentStatusDetail> ShipmentStatusDetails { get; set; }
 
+	public virtual DbSet<ShippingCarrier> ShippingCarriers { get; set; }
+
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		=> optionsBuilder.UseSqlServer(_configServices.AzureSqlConnectionString(BuildingBrickSystem.Shipping));
 
@@ -39,6 +41,7 @@ public partial class ShippingContext : DbContext
 		CreateModel.Shipment(modelBuilder);
 		CreateModel.ShipmentStatus(modelBuilder);
 		CreateModel.ShipmentStatusDetail(modelBuilder);
+		CreateModel.ShippingCarrier(modelBuilder);
 		OnModelCreatingPartial(modelBuilder);
 	}
 

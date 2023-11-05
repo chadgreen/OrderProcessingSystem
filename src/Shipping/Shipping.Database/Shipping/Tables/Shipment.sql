@@ -3,12 +3,15 @@
   ShipmentId         INT                                            NOT NULL IDENTITY(1,1),
   ShipmentStatusId   INT                                            NOT NULL,
   CustomerPurchaseId CHAR(36)                                       NOT NULL,
+  ShippingCarrierId  INT                                                NULL,
+  TrackingNumber     VARCHAR(100)                                       NULL,
   ValidFrom          DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
   ValidTo            DATETIME2 GENERATED ALWAYS AS ROW END   HIDDEN NOT NULL,
   PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo),
   CONSTRAINT pkcShipment PRIMARY KEY CLUSTERED (ShipmentId),
   CONSTRAINT fkShipment_ShipmentStatus   FOREIGN KEY (ShipmentStatusId)   REFERENCES Shipping.ShipmentStatus (ShipmentStatusId),
-  CONSTRAINT fkShipment_CustomerPurchase FOREIGN KEY (CustomerPurchaseId) REFERENCES Purchase.CustomerPurchase (CustomerPurchaseId)
+  CONSTRAINT fkShipment_CustomerPurchase FOREIGN KEY (CustomerPurchaseId) REFERENCES Purchase.CustomerPurchase (CustomerPurchaseId),
+  CONSTRAINT fkShipment_ShipingCarrier   FOREIGN KEY (ShippingCarrierId)  REFERENCES Shipping.ShippingCarrier  (ShippingCarrierId)
 ) WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Shipping.ShipmentHistory))
 GO
 

@@ -21,7 +21,7 @@ public class PlaceOrderMonitor
 	}
 
 	[Function("Notice-PlaceOrderMonitor")]
-	public async Task RunAsync([EventHubTrigger("%PlaceOrderEventHub%", Connection = "PlaceOrderConnectionString")] EventData[] eventMessages)
+	public async Task RunAsync([EventHubTrigger("%PlaceOrderEventHub%", Connection = "PlaceOrderConnectionString", ConsumerGroup = "notice")] EventData[] eventMessages)
 	{
 		foreach (EventData eventMessage in eventMessages)
 		{
