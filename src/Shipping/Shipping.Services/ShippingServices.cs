@@ -49,6 +49,20 @@ public class ShippingServices : ServicesBase
 
 	}
 
+	public async Task StartPickingOrderAsync(string orderId)
+	{
+		using ShippingContext shippingContext = new(_configServices);
+		CustomerPurchase? customerPurchase = await shippingContext.CustomerPurchases
+			.Include(x => x.Shipments)
+			.FirstOrDefaultAsync(x => x.CustomerPurchaseId == orderId);
+		if (customerPurchase is not null && customerPurchase.Shipments.Any())
+		{
+			foreach (Shipment shipment in customerPurchase.Shipments)
+				shipment.ShipmentStatusId = ShipmentStatuses.Picking;
+			await shippingContext.SaveChangesAsync();
+		}
+	}
+
 	private static async Task<CustomerPurchase> CreateCustomerPurchaseAsync(OrderPlacedMessage orderPlacedMessage, ShippingContext shippingContext)
 	{
 
